@@ -1,0 +1,159 @@
+<!-- A Versatile Layout for Full-screen Maps by Andy Cochran
+Andy Cochran 
+From https://medium.com/nyc-planning-digital/a-versatile-layout-for-full-screen-maps-229cec508b22 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>BRNav Trips</title>
+
+    
+    <!-- JavaScript Libraries-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.js"></script>
+
+  
+    <!-- CSS Links -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet" />
+    <link href="VersitileLayout.css" rel="stylesheet" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aladin&display=swap" rel="stylesheet">
+    
+</head>
+
+<body>
+
+    <div class="site-header">
+        <strong class="site-title">BRNav Trips</strong>
+    </div>
+
+    <div class="site-main grid-x has-content-open">
+    
+
+        <div class="ani-container cell medium-3 large-2">
+            <ul>
+            <li><a class="content-link" href="#">Open Trips</a></li>
+            </ul>
+        </div>
+        
+        <div class="map-container cell large-auto large-order-3">
+             <!--  ADD iframe here, inside the versitle layout's map container (VI.2.)   -->
+      	     <iframe width="100%" height="400px" src="BRNAV.html" title="Map"></iframe> 
+        </div>
+
+        <!--  Sidebar panel  -->
+        <div class="sidebar cell medium-3 large-2 large-order-1 show-for-medium">
+            <h5>Shelf</h5>
+            <ul id="shelf">
+            <!--<li><a class="content-link" href="#">Open Trips</a></li>-->
+            </ul>
+            <script>
+                const shelf = {};
+                function addToShelf(productName) {
+                    if (shelf[productName]) {
+                        shelf[productName].quantity += 1;
+                    } else {
+                        shelf[productName] = {
+                        quantity: 1,
+                    };
+            }
+            updateShelfDisplay();
+        }
+        function updateShelfDisplay() {
+            const shelfList = document.getElementById('shelf');
+            shelfList.innerHTML = '';
+            for (let product in shelf) {
+                const listItem = document.createElement('li');
+                listItem.innerText = `${product}`;
+                shelfList.appendChild(listItem);
+            }
+        }</script>
+         
+            <hr />
+
+        </div>
+
+        <div class="content-close-button-container">
+            <a href="#" class="content-close-button">×</a>
+        </div>
+        
+        <!--  Content panel  -->
+        <div class="content cell medium-5 medium-order-2">
+            <h2>Trips</h2>
+            <p>This shows points traveled between the years of 2003 and 2017.</p>
+                            <div class="product">
+                    <button onclick="addToShelf('Weathered Boar Skull')">Hollister Hills</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Cobalt Beach Glass')">Old Coast Road</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('California Bay Leaves')">Henry Coe Park</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Slippery Salamander')">Santa Cruz Mountains</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Small Geocache')">Frank Raines OHV Park</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Glass Float (Rare!)')">Lincoln City</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Toestrap')">Carnagie SVRA</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('California Poppy')">Clear Creek</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Shiny Bit of Gravel')">Tassajara Road</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Shedded Snake Skin')">Pine Nut Mountains</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('No Tresspassing Sign')">La Gloria Road</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Occupied Snake Skin (Oops, a rattler!)')">South Coast Road</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Fresh Goat Cheese and Bread')">Pescadero</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Old Golf Ball')">San Luis Resevoir</button>
+                </div>
+        </div>
+
+    </div>
+
+    <script>
+       
+        $(document).ready(function() {
+
+            $('.content-close-button').click(function() {
+                $('.content-close-button').hide();
+                $('.content').hide();
+                $('.site-main').removeClass('has-content-open')
+
+                // When the map is resized programmatically, window resize must be triggered so that the map renders in the newly allotted space.
+                window.dispatchEvent(new Event('resize'));
+
+            });
+
+            $('.content-link').click(function() {
+                $('.content-close-button').show();
+                $('.content').show();
+                $('.site-main').addClass('has-content-open')
+                window.dispatchEvent(new Event('resize'));
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <title>University of Oregon Mapping</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <!--    Include the reference to the Mapbox JavaScript here in the <head> of the page  (Part I.1)  -->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script> 
+    <!--    Include the reference to the Mapbox CSS here in between <head> tags    (Part I.2) -->
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+      
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aladin&display=swap" rel="stylesheet">
+      
+    <style>
+        /* Insert the additional CSS code here between the <style> tags  (Part I.4)   */
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+        #title { z-index: 9999; 
+            background-color:#dfd4c9; 
+            opacity: 80%; 
+            text-align: center 
+/*
+        .mapboxgl_popup_content {
+            min-width: 325px;
+            add the css for the popup font here 
+            font-family: 'Aladin', system-ui;          
+        }
+*/
+    </style>
+  </head>
+
+  <body>
+    <!--  Insert the map div here in the <body> of the page  (Part I)  -->  
+    <div id='map'></div>
+      
+    <script>
+        // Insert the JavaScript within the <script> tags, within the body   
+        // Start with the Mapbox access token here (Part 2.1)
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZXBpcGhyb24iLCJhIjoiY205MXViaWp1MDUyeTJycHNqZ3dtaW0zaCJ9.i7FbcWSGAaflLm7xTeMEHA';
+        // Then initialize the map here (Part 2.2)
+        var map = new mapboxgl.Map({
+            container: 'map', // id of a div on your page, where the map will be inserted
+            style: 'mapbox://styles/mapbox/satellite-streets-v12', // stylesheet location
+            center: [-121.8590, 37.3162], // starting position [lng, lat] eg. [-122.6788, 45.5212]
+            zoom: 7 // starting zoom 
+        });
+        // Add popups for markers here. Yes, before the markers!  (part IV)
+        
+        var popup1 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Hollister Hills');
+        
+        var popup2 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Old Coast Road');
+        
+        var popup3 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Henry Coe Park');
+                
+        var popup4 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Santa Cruz Mountains');
+        
+        var popup5 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Frank Raines OHV Park');
+        
+        var popup6 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Lincoln City');
+        
+        var popup7 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Carnagie SVRA');
+        
+        var popup8 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Clear Creek');
+        
+        var popup9 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Tassajara Road');
+        
+        var popup10 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Pine Nut Mountains');
+        
+        var popup11 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('La Gloria Road');
+        
+        var popup12 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('South Coast Road');
+        
+        var popup13 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Pescadero');
+        
+        var popup14 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('San Luis Reservoir');
+        
+        var popup15 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Knoxville');
+        
+        var popup16 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Astoria');
+        
+        var popup17 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Mc Creery Ranch Road');
+        
+        var popup18 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('El Toro');
+        
+        var popup19 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Eldorado National Forest');
+        
+        var popup20 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Lick Observatory');
+        
+        var popup21 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Slate Mountain');
+        
+        var popup22 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Lexington Reservoir');
+        
+        var popup23 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Sierra Azul');
+        
+        var popup24 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Grant Ranch');
+        
+        var popup25 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Wilder Ranch State Park');
+        
+        var popup26 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Alviso');
+        
+        var popup27 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Lake Del Valle');
+        
+        var popup28 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Almaden Quicksilver');
+        
+        var popup29 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Yaquina River Chitwood Covered Bridge');
+        
+        var popup30 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Point Bonita');
+        
+        var popup31 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Santa Teresa County Park');
+        
+        var popup32 = new mapboxgl.Popup({ offset: 25 })
+            .setHTML('Castle Rock State Park');
+        
+        // Add any other variables such as markers here (part III)
+        var marker1 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-121.4238, 36.7779]) // starting position [lng, lat] 
+            .setPopup(popup1) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker2 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-122.0897, 36.9738]) // starting position [lng, lat] 
+            .setPopup(popup2) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker3 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-121.5471, 37.1869]) // starting position [lng, lat] 
+            .setPopup(popup3) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker4 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-121.8446, 37.1115]) // starting position [lng, lat] 
+            .setPopup(popup4) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+                
+        var marker5 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-121.3813, 37.4264]) // starting position [lng, lat] 
+            .setPopup(popup5) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker6 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-124.0083, 45.0022]) // starting position [lng, lat] 
+            .setPopup(popup6) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+                
+        var marker7 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-121.5445, 37.6343]) // starting position [lng, lat] 
+            .setPopup(popup7) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker8 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-120.7682, 36.3649]) // starting position [lng, lat] 
+            .setPopup(popup8) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+                
+        var marker9 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-121.5719, 36.3114]) // starting position [lng, lat] 
+            .setPopup(popup9) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker10 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-119.5491, 39.0638]) // starting position [lng, lat] 
+            .setPopup(popup10) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker11 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-121.2441, 36.5575]) // starting position [lng, lat] 
+            .setPopup(popup11) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker12 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-121.3864, 35.9328]) // starting position [lng, lat] 
+            .setPopup(popup12) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker13 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-122.3830, 37.2518]) // starting position [lng, lat] 
+            .setPopup(popup13) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker14 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-121.117, 37.0634]) // starting position [lng, lat] 
+            .setPopup(popup14) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker15 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-122.3913, 38.8287]) // starting position [lng, lat] 
+            .setPopup(popup15) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker16 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-123.7743, 46.1963]) // starting position [lng, lat] 
+            .setPopup(popup16) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker17 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-121.1582, 36.7498]) // starting position [lng, lat] 
+            .setPopup(popup17) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker18 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-121.6709, 37.1221]) // starting position [lng, lat] 
+            .setPopup(popup18) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker19 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-120.6843, 38.825]) // starting position [lng, lat] 
+            .setPopup(popup19) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker20 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-121.6428, 37.3434]) // starting position [lng, lat] 
+            .setPopup(popup20) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker21 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-120.6852, 38.8249]) // starting position [lng, lat] 
+            .setPopup(popup21) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker22 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-121.9892, 37.1919]) // starting position [lng, lat] 
+            .setPopup(popup22) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker23 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-121.9119, 37.1692]) // starting position [lng, lat] 
+            .setPopup(popup23) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker24 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-121.7163, 37.3320]) // starting position [lng, lat] 
+            .setPopup(popup24) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker25 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-122.0833, 36.9613]) // starting position [lng, lat] 
+            .setPopup(popup25) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker26 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-121.9802, 37.4286]) // starting position [lng, lat] 
+            .setPopup(popup26) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker27 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-121.7216, 37.5985]) // starting position [lng, lat] 
+            .setPopup(popup27) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker28 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-121.8578, 37.1891]) // starting position [lng, lat] 
+            .setPopup(popup28) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker29 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-123.8176, 44.6542]) // starting position [lng, lat] 
+            .setPopup(popup29) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker30 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-122.5288, 37.816]) // starting position [lng, lat] 
+            .setPopup(popup30) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker31 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-121.7877, 37.2141]) // starting position [lng, lat] 
+            .setPopup(popup31) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        
+        var marker32 = new mapboxgl.Marker({color:'red'})
+            .setLngLat([-121.1251, 37.23]) // starting position [lng, lat] 
+            .setPopup(popup32) //add the popup with the variable name 'popup' to the marker 
+            .addTo(map);
+        // Add optional advanced "On load" function here
+        
+    </script>
+
+  </body>
+
+</html>

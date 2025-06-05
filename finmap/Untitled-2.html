@@ -1,0 +1,93 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+	    <meta charset='utf-8' />
+	    <title>Swipe between maps</title>
+	    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+	    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v3.11.0/mapbox-gl.js'></script>
+	    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v3.11.0/mapbox-gl.css' rel='stylesheet' />
+		
+	    <!-- JS and CSS for the swipe plugin -->
+	    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.4.0/mapbox-gl-compare.js'></script>
+	    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.4.0/mapbox-gl-compare.css' type='text/css' />
+	     <style>
+		 body { margin:0; padding:0;overflow: hidden;}
+		 body * {
+			-webkit-touch-callout: none;
+			  -webkit-user-select: none;
+			 -moz-user-select: none;
+			  -ms-user-select: none;
+			      user-select: none;
+		     }
+		 .map {
+			 position: absolute;
+			 top: 0;
+			 bottom: 0;
+			 width: 100%;
+		     }
+        #title { z-index: 9999; 
+            background-color:whitesmoke; 
+            opacity: 80%; 
+            text-align: center 
+        }
+	     </style>
+	</head>
+	<body>
+		<div id="comparison-container">
+	     		<div id='poinrts' class='map'></div> 
+ 	          </div>
+
+		<script>
+		  // III.3. add your Mapbox access token and map variable here!
+            mapboxgl.accessToken = 'pk.eyJ1IjoiZXBpcGhyb24iLCJhIjoiY205MXViaWp1MDUyeTJycHNqZ3dtaW0zaCJ9.i7FbcWSGAaflLm7xTeMEHA';
+             
+            
+            // Create a popup, but don't add it to the map yet.
+            var popup = new mapboxgl.Popup({
+                closeButton: false,
+                closeOnClick: false
+            });
+        
+            var map = new mapboxgl.Map({
+            container: 'map', // id of a div on your page, where the map will be inserted
+            style: 'mapbox://styles/mapbox/satellite-streets-v12', // stylesheet location
+            center: [-121.8590, 37.3162], // starting position [lng, lat] eg. [-122.6788, 45.5212]
+            zoom: 7 // starting zoom 
+            
+            map.on('load', function() {
+            // the rest of the owner data code will go in here
+                map.addLayer({
+                    id: 'poinrts',
+                    type: "fill",
+                    source: {
+                        type: 'vector',
+                        url: 'mapbox://epiphron.cmb9xeog30l121ona83xo0x5i-5k7qn'  //input your tileset ID url e.g. 'mapbox://jomerson.6ykhlovc' 
+                    },
+                    'source-layer': 'locationsv2', //input your source layer name e.g. 'Owner-Renter-Pop-ca08iw'
+                    }       
+                });
+                map.on('mousemove', 'point Data', function (e) {
+        
+                    // Change the cursor style as a UI indicator.
+                    map.getCanvas().style.cursor = 'help';
+
+                    var coordinates = e.lngLat;
+                    var description = e.features[0].properties.Own;
+
+                    // Populate the popup and set its coordinates
+                    // based on the feature found.
+                    popup.setLngLat(coordinates)
+                    .setHTML(description)
+                    .addTo(map);
+                });
+
+                map.on('mouseleave', 'point Data', function () {
+                    map.getCanvas().style.cursor = '';
+                    popup.remove();
+                });
+            });
+
+		</script>
+
+		</body>
+	</html>
