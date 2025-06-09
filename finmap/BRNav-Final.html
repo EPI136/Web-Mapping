@@ -1,0 +1,514 @@
+<!-- A Versatile Layout for Full-screen Maps by Andy Cochran
+Andy Cochran 
+From https://medium.com/nyc-planning-digital/a-versatile-layout-for-full-screen-maps-229cec508b22 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>BRNav Trips</title>
+
+    
+    <!-- JavaScript Libraries-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.js"></script>
+
+  
+    <!-- CSS Links -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" rel="stylesheet" />
+    <link href="VersitileLayout.css" rel="stylesheet" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+    
+
+    <!-- maps -->
+    <!--    Include the reference to the Mapbox JavaScript here in the <head> of the page  (Part I.1)  -->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script> 
+    <!--    Include the reference to the Mapbox CSS here in between <head> tags    (Part I.2) -->
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+     
+    <style>
+    body {
+        font-family: 'Special Elite', serif;
+      }
+    h2, h5 {
+    font-family: 'Special Elite' !important;
+    }
+    #map {position: absolute; top:0; bottom:0; width:100%; }
+    </style>
+
+    
+    
+</head>
+
+<body>
+
+    <div class="site-header">
+        <strong class="site-title">BRNav Trips</strong>
+    </div>
+
+    <div class="site-main grid-x has-content-open">
+    
+
+        <div class="ani-container cell medium-3 large-2">
+            <ul>
+            <li><a class="content-link" href="#">Open Trips</a></li>
+            </ul>
+        </div>
+        
+        <div class="map-container cell large-auto large-order-3">
+             <!--  ADD iframe here, inside the versitle layout's map container (VI.2.)   -->
+      	     <!-- <iframe width="100%" height="400px" src="BRNAV.html" title="Map"></iframe>  -->
+             <!--  Insert the map div here in the <body> of the page  (Part I)  -->  
+            <div id='map'></div>
+        </div>
+
+        <!--  Sidebar panel  -->
+        <div class="sidebar cell medium-3 large-2 large-order-1 show-for-medium">
+            <h5>Shelf</h5>
+            <h5 class = "textstyle"></h5>
+            <ul id="shelf">
+            <!--<li><a class="content-link" href="#">Open Trips</a></li>-->
+            </ul>
+            <script>
+                const shelf = {};
+                function addToShelf(productName) {
+                    if (shelf[productName]) {
+                        shelf[productName].quantity += 1;
+                    } else {
+                        shelf[productName] = {
+                        quantity: 1,
+                    };
+            }
+            updateShelfDisplay();
+        }
+        function updateShelfDisplay() {
+            const shelfList = document.getElementById('shelf');
+            shelfList.innerHTML = '';
+            for (let product in shelf) {
+                const listItem = document.createElement('li');
+                listItem.innerText = `${product}`;
+                shelfList.appendChild(listItem);
+            }
+        }
+        
+        
+        
+        
+        
+        
+        </script>
+         
+            <hr />
+
+        </div>
+
+        <div class="content-close-button-container">
+            <a href="#" class="content-close-button">×</a>
+        </div>
+        
+        <!--  Content panel  -->
+        <div class="content cell medium-5 medium-order-2">
+            <h2>Trips</h2>
+            <p>This shows points traveled between the years of 2003 and 2017.</p>
+                <div class="product">
+                    <button onclick="addToShelf('Weathered Boar Skull')">Hollister Hills</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Cobalt Beach Glass')">Old Coast Road</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('California Bay Leaves')">Henry Coe Park</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Slippery Salamander')">Santa Cruz Mountains</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Small Geocache')">Frank Raines OHV Park</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Glass Float (Rare!)')">Lincoln City</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Toestrap')">Carnagie SVRA</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('California Poppy')">Clear Creek</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Shiny Bit of Gravel')">Tassajara Road</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Shedded Snake Skin')">Pine Nut Mountains</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('No Tresspassing Sign')">La Gloria Road</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Occupied Snake Skin (Oops, a rattler!)')">South Coast Road</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Fresh Goat Cheese and Bread')">Pescadero</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Old Golf Ball')">San Luis Resevoir</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Turkey Feather')">Knoxville</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Agate Pebble')">Astoria</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Old Square Nail')">Mc Creary Ranch Road</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Manzanita Bark')">El Toro</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Miner's Lettuce)">Eldorado National Forest</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Planet Marbles')">Lick Observatory</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Gold Flakes in a Jar')">Slate Mountain</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Very Angry Bullfrog')">Lexington Resevoir</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Flake of the Cube')">Sierra Azul</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Very Old Button')">Grant Ranch</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Swallowtail Wing')">Wilder Ranch State Park</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Bottle of Pink Water')">Alviso</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Lingering Fear of Tarantulas')">Lake Del Valle</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Bits of Cinnabar')">Almaden Quicksilver</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Porclain Shards')">Yaquina River Chitwood Covered Bridge</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Harbor Seal Plush')">Point Bonita Lighthouse</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Quartz Cluster')">Santa Teresa County Park</button>
+                </div>
+                <div class="product">
+                        <button onclick="addToShelf('Oak Gall')">Castle Rock State Park</button>
+                </div>
+        </div>
+
+    </div>
+
+    <script>
+       
+        $(document).ready(function() {
+
+            $('.content-close-button').click(function() {
+                $('.content-close-button').hide();
+                $('.content').hide();
+                $('.site-main').removeClass('has-content-open')
+
+                // When the map is resized programmatically, window resize must be triggered so that the map renders in the newly allotted space.
+                window.dispatchEvent(new Event('resize'));
+
+            });
+
+            $('.content-link').click(function() {
+                $('.content-close-button').show();
+                $('.content').show();
+                $('.site-main').addClass('has-content-open')
+                window.dispatchEvent(new Event('resize'));
+            });
+
+            // Insert the JavaScript within the <script> tags, within the body   
+            // Start with the Mapbox access token here (Part 2.1)
+            mapboxgl.accessToken = 'pk.eyJ1IjoiZXBpcGhyb24iLCJhIjoiY205MXViaWp1MDUyeTJycHNqZ3dtaW0zaCJ9.i7FbcWSGAaflLm7xTeMEHA';
+            // Then initialize the map here (Part 2.2)
+            var map = new mapboxgl.Map({
+                container: 'map', // id of a div on your page, where the map will be inserted
+                style: 'mapbox://styles/mapbox/satellite-streets-v12', // stylesheet location
+                center: [-121.8590, 37.3162], // starting position [lng, lat] eg. [-122.6788, 45.5212]
+                zoom: 7 // starting zoom 
+            });
+            // Add popups for markers here. Yes, before the markers!  (part IV)
+            
+            var popup1 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Hollister Hills</h5>')
+            
+            var popup2 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Old Coast Road</h5>');
+            
+            var popup3 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Henry Coe Park</h5>');
+                    
+            var popup4 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Santa Cruz Mountains</h5>');
+            
+            var popup5 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Frank Raines OHV Park</h5>');
+            
+            var popup6 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Lincoln City</h5>');
+            
+            var popup7 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Carnagie SVRA</h5>');
+            
+            var popup8 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Clear Creek</h5>');
+            
+            var popup9 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Tassajara Road</h5>');
+            
+            var popup10 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Pine Nut Mountains</h5>');
+            
+            var popup11 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>La Gloria Road</h5>');
+            
+            var popup12 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>South Coast Road</h5>');
+            
+            var popup13 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Pescadero</h5>');
+            
+            var popup14 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>San Luis Reservoir</h5>');
+            
+            var popup15 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Knoxville</h5>');
+            
+            var popup16 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Astoria</h5>');
+            
+            var popup17 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Mc Creery Ranch Road</h5>');
+            
+            var popup18 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>El Toro</h5>');
+            
+            var popup19 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Eldorado National Forest</h5>');
+            
+            var popup20 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Lick Observatory</h5>');
+            
+            var popup21 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Slate Mountain</h5>');
+            
+            var popup22 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Lexington Reservoir</h5>');
+            
+            var popup23 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Sierra Azul</h5>');
+            
+            var popup24 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Grant Ranch</h5>');
+            
+            var popup25 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Wilder Ranch State Park</h5>');
+            
+            var popup26 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Alviso</h5>');
+            
+            var popup27 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Lake Del Valle</h5>');
+            
+            var popup28 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Almaden Quicksilver</h5>');
+            
+            var popup29 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Yaquina River Chitwood Covered Bridge</h5>');
+            
+            var popup30 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Point Bonita</h5>');
+            
+            var popup31 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Santa Teresa County Park</h5>');
+            
+            var popup32 = new mapboxgl.Popup({ offset: 25 })
+                .setHTML('<h5>Castle Rock State Park</h5>');
+            
+            // Add any other variables such as markers here (part III)
+            var marker1 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-121.4238, 36.7779]) // starting position [lng, lat] 
+                .setPopup(popup1) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker2 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-122.0897, 36.9738]) // starting position [lng, lat] 
+                .setPopup(popup2) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker3 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-121.5471, 37.1869]) // starting position [lng, lat] 
+                .setPopup(popup3) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker4 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-121.8446, 37.1115]) // starting position [lng, lat] 
+                .setPopup(popup4) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+                    
+            var marker5 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-121.3813, 37.4264]) // starting position [lng, lat] 
+                .setPopup(popup5) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker6 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-124.0083, 45.0022]) // starting position [lng, lat] 
+                .setPopup(popup6) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+                    
+            var marker7 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-121.5445, 37.6343]) // starting position [lng, lat] 
+                .setPopup(popup7) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker8 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-120.7682, 36.3649]) // starting position [lng, lat] 
+                .setPopup(popup8) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+                    
+            var marker9 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-121.5719, 36.3114]) // starting position [lng, lat] 
+                .setPopup(popup9) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker10 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-119.5491, 39.0638]) // starting position [lng, lat] 
+                .setPopup(popup10) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker11 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-121.2441, 36.5575]) // starting position [lng, lat] 
+                .setPopup(popup11) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker12 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-121.3864, 35.9328]) // starting position [lng, lat] 
+                .setPopup(popup12) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker13 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-122.3830, 37.2518]) // starting position [lng, lat] 
+                .setPopup(popup13) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker14 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-121.117, 37.0634]) // starting position [lng, lat] 
+                .setPopup(popup14) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker15 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-122.3913, 38.8287]) // starting position [lng, lat] 
+                .setPopup(popup15) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker16 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-123.7743, 46.1963]) // starting position [lng, lat] 
+                .setPopup(popup16) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker17 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-121.1582, 36.7498]) // starting position [lng, lat] 
+                .setPopup(popup17) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker18 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-121.6709, 37.1221]) // starting position [lng, lat] 
+                .setPopup(popup18) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker19 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-120.6843, 38.825]) // starting position [lng, lat] 
+                .setPopup(popup19) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker20 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-121.6428, 37.3434]) // starting position [lng, lat] 
+                .setPopup(popup20) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker21 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-120.6852, 38.8249]) // starting position [lng, lat] 
+                .setPopup(popup21) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker22 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-121.9892, 37.1919]) // starting position [lng, lat] 
+                .setPopup(popup22) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker23 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-121.9119, 37.1692]) // starting position [lng, lat] 
+                .setPopup(popup23) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker24 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-121.7163, 37.3320]) // starting position [lng, lat] 
+                .setPopup(popup24) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker25 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-122.0833, 36.9613]) // starting position [lng, lat] 
+                .setPopup(popup25) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker26 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-121.9802, 37.4286]) // starting position [lng, lat] 
+                .setPopup(popup26) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker27 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-121.7216, 37.5985]) // starting position [lng, lat] 
+                .setPopup(popup27) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker28 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-121.8578, 37.1891]) // starting position [lng, lat] 
+                .setPopup(popup28) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker29 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-123.8176, 44.6542]) // starting position [lng, lat] 
+                .setPopup(popup29) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker30 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-122.5288, 37.816]) // starting position [lng, lat] 
+                .setPopup(popup30) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker31 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-121.7877, 37.2141]) // starting position [lng, lat] 
+                .setPopup(popup31) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            
+            var marker32 = new mapboxgl.Marker({color:'red'})
+                .setLngLat([-121.1251, 37.23]) // starting position [lng, lat] 
+                .setPopup(popup32) //add the popup with the variable name 'popup' to the marker 
+                .addTo(map);
+            // Add optional advanced "On load" function here
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>
